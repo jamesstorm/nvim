@@ -1,6 +1,6 @@
 -- lspconfig
 local nvim_lsp = require('lspconfig')
-local servers = { 'jedi_language_server', 'rust_analyzer' }
+local servers = { 'jedi_language_server', 'rust_analyzer', 'html' }
 
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -31,7 +31,17 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+require'lspconfig'.html.setup {
+    capabilities = capabilities,
+    configurationSection = { "html", "css", "javascript" },
+    embeddedLanguages = {
+        css = true,
+        javascript = true
+    },
+    provideFormatter = true
+}
 
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup {
