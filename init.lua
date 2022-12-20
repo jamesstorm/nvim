@@ -38,8 +38,8 @@ vim.api.nvim_set_keymap('n', '<Up>', '<Nop>', {})
 vim.api.nvim_set_keymap('n', '<Down>', '<Nop>', {})
 vim.api.nvim_set_keymap('n', '<leader>w', '<cmd>w<cr><cmd>silent !/home/james/projects/stormycooks/recipe-author/bin/python /home/james/projects/stormycooks/recipe-author/build.py<cr>', {})
 
-
 require'lspconfig'.jedi_language_server.setup{}
+
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
