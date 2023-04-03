@@ -43,3 +43,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>sps", "<cmd>source ~/.config/nvim/lua/jamesstorm/packer.lua<CR><cmd>PackerSync<CR>q<cmd>lua ColorMyPencils()<CR>")
+
+vim.keymap.set("n", "<leader>tt", "<cmd>TroubleToggle<cr>")
+vim.keymap.set("n", "<leader>xx", "<cmd>NvimTreeToggle<cr>")
+
