@@ -1,11 +1,23 @@
-local lsp = require("lsp-zero")
 
-lsp.preset("recommended")
+local lsp = require('lsp-zero').preset({})
 
-lsp.ensure_installed({
+lsp.on_attach(function(client, bufnr)
+  lsp.default_keymaps({buffer = bufnr})
+end)
+
+-- (Optional) Configure lua language server for neovim
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+--lsp.setup()
+
+
+
+
+
+--lsp.ensure_installed({
 --  'tsserver',
-  'rust_analyzer',
-})
+--  'rust_analyzer',
+--})
 
 -- Fix Undefined global 'vim'
 --lsp.configure('lua-language-server', {
@@ -31,8 +43,8 @@ lsp.ensure_installed({
       end,
     },
     window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -54,7 +66,7 @@ lsp.ensure_installed({
   })
 
 lsp.set_preferences({
-    suggest_lsp_servers = false,
+    suggest_lsp_servers = true,
     sign_icons = {
         error = 'E',
         warn = 'W',
